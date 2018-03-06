@@ -1,9 +1,8 @@
-# require 'test/unit'
-#
-class YahtzeeTest < Test::Unit::TestCase
-  def setup
-    @roll = { dice: [1,1,1,2,4], }
-  end
+# # require 'test/unit'
+# #
+# class YahtzeeTest < Test::Unit::TestCase
+  # def setup
+  # end
 ## round
   # each player gets three rolls
   # can choose to end turn after 1 or two rolls
@@ -15,10 +14,17 @@ class YahtzeeTest < Test::Unit::TestCase
   # 13 categories
   # upper
     # aces - any combo, scores sum of ones
+    roll = { dice: [1,1,1,2,4], score: 3 }
 
-def scorecard_aces(roll)
-  roll[:dice].reduce { |accum, el| accum + (el == 1 ? el : 0) } == roll[:score]
+describe "check" do
+  it "counts properly" do
+    roll[:dice].reduce { |accum, el| accum + (el == 1 ? el : 0) } == roll[:score]
+  end
 end
+
+
+console.log(x)
+let x = 1
 
 
     # twos - any combo, scores sum of twos
@@ -38,7 +44,7 @@ end
     # scores 0 if dice do not match selected slot
   # lower
     # scores 0 if dice do not match selected slot
-end
+# end
 #
 # game = YahtzeeTest.new()
 # roll = { dice: [1,1,1,2,3], score: 3 }
