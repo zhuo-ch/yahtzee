@@ -22,38 +22,8 @@ class Board
     }
   end
 
-  def get_sets(roll)
-    results = {}
-    roll.each { |die| results[die] = results[die] ? results[die] + 1 : 1 }
-    results
-  end
-
-  def validate_straight(roll, len)
-    nums = get_sets(roll).keys.sort { |a, b| a <=> b }
-    idx = 0
-
-    while idx < len
-      if nums[idx] != nums[idx + 1] - 1
-        return false
-      end
-
-      idx += 1
-    end
-
-    true
-  end
-
-  def validate_set(roll, category)
-    get_sets(roll).values.include?(category)
-  end
-
-  def validate_full_house(roll)
-    sets = get_sets(roll)
-    sets.values.include?(3) && sets.values.include?(2)
-  end
-
   def score_upper_section(roll, category)
-    roll.reduce { |sum, die| sum += die == category ? die : 0 }
+    roll.dice.reduce { |sum, die| sum += die == category ? die : 0 }
   end
 
   def score_lower_section(roll, category)
