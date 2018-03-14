@@ -16,6 +16,10 @@ class Board
       "Chance",
     ]
     @board = Array.new(@labels.length) { Array.new() }
+    @keys = { "0": 'aces', '1': 'twos', '2': 'threes', '3': 'fours', '4': 'fives',
+      '5': 'sixes', '6': 'three kind', '7': 'four kind', '8': 'full house',
+      '9': 'small', '10': 'large', '11': 'yahzee', '12': 'chance'
+    }
   end
 
   def get_sets(roll)
@@ -25,8 +29,7 @@ class Board
   end
 
   def validate_straight(roll, len)
-    sets = get_sets(roll)
-    nums = sets.keys.sort { |a, b| a <=> b }
+    nums = get_sets(roll).keys.sort { |a, b| a <=> b }
     idx = 0
 
     while idx < len
@@ -54,7 +57,22 @@ class Board
   end
 
   def score_lower_section(roll, category)
-
+    case category
+    when 6
+      validate_set(roll, category)
+    when 7
+      validate_set(roll, category)
+    when 8
+      validate_full_house(roll)
+    when 9
+      validate_straight(roll, 4)
+    when 10
+      validate_straight(roll, 5)
+    when 11
+      validate_set(roll, 5)
+    when 12
+      roll.reduce(:+)
+    end
   end
 
 
