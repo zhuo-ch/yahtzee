@@ -24,6 +24,22 @@ class Board
     results
   end
 
+  def validate_straight(roll, len)
+    sets = get_sets(roll)
+    nums = sets.keys.sort { |a, b| a <=> b }
+    idx = 0
+
+    while idx < len
+      if nums[idx] != nums[idx + 1] - 1
+        return false
+      end
+
+      idx += 1
+    end
+
+    true
+  end
+
   def validate_set(roll, category)
     get_sets(roll).values.include?(category)
   end
