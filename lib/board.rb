@@ -22,8 +22,13 @@ class Board
     }
   end
 
+  def is_valid_selection?(score)
+    score > 0
+  end
+
   def score_upper_section(roll, category)
-    roll.dice.reduce { |sum, die| sum += die == category ? die : 0 }
+    score = roll.dice.reduce { |sum, die| sum += die == category ? die : 0 }
+
   end
 
   def score_lower_section(roll, category)
